@@ -1,0 +1,119 @@
+<div class="container-fluid mt-0">
+  <div class="list-header mb-4">
+    <div class="row align-items-center">
+      <div class="col-12">
+        <div class="header-wrapper">
+          <div class="header-title">
+            <h2><i class="fas fa-file-invoice-dollar"></i> CPO List</h2>
+            <p class="header-subtitle">Manage and view all purchase orders</p>
+          </div>
+          <div class="header-action">
+            <button class="btn btn-primary" (click)="router.navigate(['/cpo-add'])">
+              <i class="fas fa-plus-circle"></i> Add New CPO
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow-sm table-card">
+    <div class="table-scroll-wrapper">
+      <table class="table table-hover table-fixed">
+        <thead class="table-dark sticky-header">
+          <tr>
+            <th>CPO No</th>
+            <th>Date</th>
+            <th>Merchandiser</th>
+            <th>Customer</th>
+            <th>Style</th>
+            <!-- <th>Color</th> -->
+            <th>Size</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (cpo of cpoList; track cpo.id) {
+          <tr>
+            <td><strong>{{ cpo.cpoNo }}</strong></td>
+            <td title="{{ cpo.cpoDate | date: 'MMM dd, yyyy' }}">{{ cpo.cpoDate | date: 'MMM dd, yyyy' }}</td>
+            <td class="text-truncate" [title]="cpo.merchandiser">{{ cpo.merchandiser }}</td>
+            <td class="text-truncate" [title]="cpo.customer">{{ cpo.customer }}</td>
+            <td title="{{ cpo.styleNo }}">{{ cpo.styleNo }}</td>
+            <!-- <td class="text-center">
+              <span class="badge" [ngStyle]="{'background-color': cpo.color}" [title]="cpo.color">
+                {{ cpo.color }}
+              </span>
+            </td> -->
+            <td class="text-start">
+              <span class="badge bg-secondary">{{ cpo.size }}</span>
+            </td>
+            <td class="text-start">{{ cpo.quantity }}</td>
+            <td class="text-start">${{ cpo.unitPrice | number: '1.2-2' }}</td>
+            <td class="text-start fw-bold">${{ (cpo.quantity * cpo.unitPrice) | number: '1.2-2' }}</td>
+            <td class="text-start">
+              <span class="badge" [ngClass]="{
+                'bg-info': cpo.status === 'Draft',
+                'bg-success': cpo.status === 'Active',
+                'bg-warning': cpo.status === 'Pending',
+                'bg-secondary': cpo.status === 'Completed',
+                'bg-danger': cpo.status === 'Cancelled'
+              }" [title]="cpo.status">
+                {{ cpo.status }}
+              </span>
+            </td>
+            <td class="text-start d-flex justify-content-center align-items-center gap-1">
+              <button
+                class="btn btn-sm btn-primary me-1"
+                (click)="editCpo(cpo.id)"
+                title="Edit">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button
+                class="btn btn-sm btn-info me-1"
+                (click)="printBarcode(cpo)"
+                title="Print Barcode">
+                <i class="fas fa-barcode"></i>
+              </button>
+              <button
+                class="btn btn-sm btn-danger"
+                (click)="deleteCpo(cpo.id)"
+                title="Delete">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    @if (cpoList.length === 0) {
+    <div class="card-body">
+      <div class="alert alert-info">
+        <i class="fas fa-info-circle"></i> No CPOs found. <a href="javascript:void(0)" (click)="router.navigate(['/cpo-add'])" class="alert-link">Create one now</a>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+
+<!-- Barcode Modal -->
+@if (showBarcodeModal) {
+<div class="barcode-modal-overlay" (click)="closeBarcodeModal()">
+  <div class="barcode-modal-content" (click)="$event.stopPropagation()">
+    <div class="barcode-modal-header">
+      <h3>Print Garment Label</h3>
+      <button class="close-btn" (click)="closeBarcodeModal()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="barcode-modal-body">
+      <app-barcode-label [labelData]="selectedBarcodeCpo"></app-barcode-label>
+    </div>
+  </div>
+</div>
+}

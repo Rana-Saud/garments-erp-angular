@@ -1,0 +1,192 @@
+// ============================================
+// THEME VARIABLES - Consistent Color System
+// ============================================
+
+// Primary Colors - Gradient
+$primary-gradient-start: #667eea;
+$primary-gradient-end: #764ba2;
+$primary-color: #667eea;
+$primary-dark: #764ba2;
+
+// Secondary Colors
+$secondary-color: #6c757d;
+$secondary-light: #e9ecef;
+
+// Background Colors
+$bg-primary: #f5f6f8;
+$bg-secondary: #ffffff;
+$bg-dark: #1a1a1a;
+$bg-lighter: #f8f9fa;
+$bg-overlay: rgba(0, 0, 0, 0.15);
+
+// Text Colors
+$text-primary: #1a1a1a;
+$text-secondary: #6c757d;
+$text-light: #b8bcc4;
+$text-white: #ffffff;
+$text-dark: #333333;
+
+// Border Colors
+$border-light: #e9ecef;
+$border-dark: #333333;
+$border-primary: #667eea;
+
+// Sidebar
+$sidebar-bg: #1a1a1a;
+$sidebar-border: #333333;
+$sidebar-text: #b8bcc4;
+$sidebar-hover: #2a2a2a;
+$sidebar-active: #667eea;
+
+// Status Colors
+$status-draft: #e3f2fd;
+$status-draft-text: #1976d2;
+$status-draft-border: #90caf9;
+
+$status-success: #e8f5e9;
+$status-success-text: #388e3c;
+$status-success-border: #81c784;
+
+$status-warning: #fff3e0;
+$status-warning-text: #f57c00;
+$status-warning-border: #ffb74d;
+
+$status-secondary: #eeeeee;
+$status-secondary-text: #616161;
+$status-secondary-border: #bdbdbd;
+
+$status-danger: #ffebee;
+$status-danger-text: #c62828;
+$status-danger-border: #ef5350;
+
+// Shadows
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+$shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+$shadow-hover: 0 4px 12px rgba(102, 126, 234, 0.4);
+
+// Transitions
+$transition-default: all 0.3s ease;
+$transition-fast: all 0.2s ease;
+
+// Border Radius
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+$spacing-2xl: 25px;
+
+// Font Sizes
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.85rem;
+$font-size-base: 0.95rem;
+$font-size-lg: 1.1rem;
+$font-size-xl: 1.3rem;
+
+// Breakpoints
+$bp-xs: 320px;
+$bp-sm: 576px;
+$bp-md: 768px;
+$bp-lg: 992px;
+$bp-xl: 1200px;
+
+// Mixins
+@mixin gradient-primary {
+  background: linear-gradient(135deg, $primary-gradient-start 0%, $primary-gradient-end 100%);
+}
+
+@mixin button-primary {
+  @include gradient-primary;
+  border: none;
+  color: $text-white;
+  padding: $spacing-sm $spacing-lg;
+  font-weight: 500;
+  transition: $transition-default;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-hover;
+    color: $text-white;
+  }
+}
+
+@mixin button-sm-primary {
+  background-color: $primary-color;
+  border: none;
+  color: $text-white;
+  padding: $spacing-md $spacing-md;
+  font-size: $font-size-sm;
+  border-radius: $border-radius-sm;
+  transition: $transition-fast;
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+
+  &:hover {
+    background-color: $primary-dark;
+    transform: scale(1.05);
+  }
+}
+
+@mixin button-sm-danger {
+  background-color: #ef5350;
+  border: none;
+  color: $text-white;
+  padding: $spacing-md $spacing-md;
+  font-size: $font-size-sm;
+  border-radius: $border-radius-sm;
+  transition: $transition-fast;
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+
+  &:hover {
+    background-color: #c62828;
+    transform: scale(1.05);
+  }
+}
+
+@mixin scrollbar-custom($thumb-color: $primary-color) {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $bg-lighter;
+    border-radius: $border-radius-sm;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: $border-radius-sm;
+
+    &:hover {
+      background: $primary-dark;
+    }
+  }
+}
+
+@mixin card-style {
+  border: none;
+  border-radius: $border-radius-lg;
+  background-color: $bg-secondary;
+  box-shadow: $shadow-sm;
+}
+
+@mixin badge-style($bg-color, $text-color, $border-color) {
+  background-color: $bg-color !important;
+  color: $text-color !important;
+  border: 1px solid $border-color;
+  padding: $spacing-xs $spacing-md;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  border-radius: $border-radius-sm;
+  display: inline-block;
+}

@@ -1,0 +1,30 @@
+<div class="sidebar" [ngClass]="{'collapsed': sidebarCollapsed}">
+  <div class="sidebar-header">
+    <h6><i class="fas fa-layer-group"></i> <span class="brand-text">Garments ERP</span></h6>
+    <button class="toggle-btn" (click)="toggleSidebar()" title="Toggle Sidebar">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+  </div>
+
+  <ul class="nav flex-column">
+    <li class="nav-item">
+      <a routerLink="/cpo" routerLinkActive="active" class="nav-link" title="CPO">
+        <i class="fas fa-file-invoice-dollar"></i>
+        <span class="nav-text">CPO</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/process" routerLinkActive="active" class="nav-link" title="Process">
+        <i class="fas fa-cogs"></i>
+        <span class="nav-text">Process</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="sidebar-footer">
+    <button class="logout-btn" (click)="logout()" title="Logout">
+      <i class="fas fa-sign-out-alt"></i>
+      <span class="nav-text">Logout</span>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,162 @@
+<div class="container-fluid mt-4 mb-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-dark text-white">
+      <h5 class="mb-0">{{ isEditMode ? 'Edit Process' : 'Process Master' }}</h5>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="processForm">
+        <!-- IDL - Process Section -->
+        <div class="section-header mb-3">
+          <h6 class="bg-light p-2 border-start border-4 border-primary">IDL - Process</h6>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <label class="form-label">Process ID</label>
+            <input type="text" class="form-control" formControlName="processId" readonly>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Status</label>
+            <select class="form-control" formControlName="status">
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Process Type</label>
+            <select class="form-control" formControlName="processType">
+              <option value="">Select Process Type</option>
+              <option value="Production">Production</option>
+              <option value="Quality">Quality</option>
+              <option value="Inspection">Inspection</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Barcode Terminal</label>
+            <select class="form-control" formControlName="barcodeTerminal">
+              <option value="Yes">YES</option>
+              <option value="No">NO</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label class="form-label">Process</label>
+            <input type="text" class="form-control" formControlName="process" placeholder="e.g., Leather Cutting">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Process Nick</label>
+            <input type="text" class="form-control" formControlName="processNick" placeholder="e.g., L/CUT">
+          </div>
+          <div class="col-md-2">
+            <label class="form-label">Standard Time (Days)</label>
+            <input type="number" class="form-control" formControlName="standardTime" placeholder="1">
+          </div>
+          <div class="col-md-2">
+            <label class="form-label">Process Sequence</label>
+            <input type="number" step="0.1" class="form-control" formControlName="processSequence" placeholder="1.1">
+          </div>
+        </div>
+
+        <!-- Rate Section -->
+        <div class="section-header mb-3 mt-4">
+          <h6 class="bg-light p-2 border-start border-4 border-success">Rate</h6>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label class="form-label">Product Category</label>
+            <input type="text" class="form-control" formControlName="productCategory" placeholder="e.g., Leather Jacket Biker">
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Dept. Type</label>
+            <select class="form-control" formControlName="deptType">
+              <option value="In-House">In-House</option>
+              <option value="CMT">CMT</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label class="form-label">Piece Rate</label>
+            <input type="number" step="0.01" class="form-control" formControlName="pieceRate" placeholder="90">
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Piece Overhead %</label>
+            <input type="number" step="0.01" class="form-control" formControlName="pieceOverhead" placeholder="0">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-success" (click)="addRateEntry()">
+              <i class="fas fa-plus"></i> Add Rate Entry
+            </button>
+          </div>
+        </div>
+
+        <!-- Rate Table -->
+        @if (rateTableData.length > 0) {
+        <div class="table-responsive mb-4">
+          <table class="table table-hover table-fixed">
+            <thead class="table-dark sticky-header">
+              <tr>
+                <th>Process</th>
+                <th>Product Category</th>
+                <th>Dept Type</th>
+                <th>Piece Rate</th>
+                <th>Piece Overhead %</th>
+                <th>Status</th>
+                <th width="80">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (rate of rateTableData; track $index) {
+              <tr>
+                <td>{{ rate.process }}</td>
+                <td>{{ rate.productCategory }}</td>
+                <td>
+                  <span class="badge" [ngClass]="{
+                    'bg-success': rate.deptType === 'In-House',
+                    'bg-info': rate.deptType === 'CMT'
+                  }">
+                    {{ rate.deptType }}
+                  </span>
+                </td>
+                <td class="text-end">${{ rate.pieceRate | number: '1.2-2' }}</td>
+                <td class="text-center">{{ rate.pieceOverhead }}%</td>
+                <td>
+                  <span class="badge bg-success">{{ rate.status }}</span>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-sm btn-danger" (click)="deleteRateEntry($index)" title="Delete">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        }
+
+        <!-- Buttons -->
+        <div class="row mt-4">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-outline-secondary me-2" (click)="goBackToList()" title="Back to List">
+              <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button type="submit" class="btn btn-primary me-2" (click)="onSubmit()">
+              <i class="fas fa-save"></i> Save
+            </button>
+            <button type="button" class="btn btn-secondary me-2" (click)="onReset()">
+              <i class="fas fa-redo"></i> Reset
+            </button>
+            <button type="button" class="btn btn-outline-danger" (click)="onCancel()">
+              <i class="fas fa-times-circle"></i> Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

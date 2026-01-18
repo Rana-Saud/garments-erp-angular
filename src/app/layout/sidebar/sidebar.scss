@@ -1,0 +1,221 @@
+@import "../../../theme.scss";
+
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: $sidebar-bg;
+  color: $text-white;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-right: 1px solid $sidebar-border;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 2px 0 8px $bg-overlay;
+  display: flex;
+  flex-direction: column;
+  transition: width $transition-default;
+
+  @include scrollbar-custom($primary-color);
+
+  @media (max-width: 768px) {
+    width: 70px;
+
+    .brand-text,
+    .nav-text {
+      display: none;
+    }
+
+    .sidebar-header {
+      h6 {
+        justify-content: center;
+        padding: $spacing-xl $spacing-sm;
+      }
+    }
+
+    .nav-link {
+      justify-content: center;
+      padding: $spacing-lg $spacing-sm;
+    }
+
+    .logout-btn {
+      justify-content: center;
+      padding: $spacing-lg $spacing-sm;
+    }
+  }
+
+  &.collapsed {
+    width: 70px;
+
+    .brand-text,
+    .nav-text {
+      display: none;
+    }
+
+    .sidebar-header h6 {
+      justify-content: center;
+      padding: $spacing-xl $spacing-sm;
+    }
+
+    .nav-link {
+      justify-content: center;
+      padding: $spacing-lg $spacing-sm;
+    }
+
+    .logout-btn {
+      justify-content: center;
+      padding: $spacing-lg $spacing-sm;
+    }
+
+    .toggle-btn {
+      i {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+.sidebar-header {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: none;
+
+  h6 {
+    padding: $spacing-xl $spacing-xl;
+    margin: 0;
+    font-size: $font-size-lg;
+    font-weight: 700;
+    background: linear-gradient(135deg, $primary-gradient-start 0%, $primary-gradient-end 100%);
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    color: $text-white;
+    box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+    letter-spacing: 0.5px;
+    flex: 1;
+
+    i {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+.toggle-btn {
+  background: linear-gradient(135deg, $primary-gradient-start 0%, $primary-gradient-end 100%);
+  border: none;
+  color: $text-white;
+  cursor: pointer;
+  padding: $spacing-xl $spacing-md;
+  font-size: $font-size-lg;
+  transition: $transition-fast;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-width: 50px;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  i {
+    transition: $transition-default;
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
+}
+
+.nav {
+  padding: $spacing-md 0;
+  flex: 1;
+}
+
+.nav-item {
+  margin: 0;
+  transition: $transition-default;
+
+  .nav-link {
+    color: $sidebar-text;
+    padding: $spacing-md $spacing-xl;
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    text-decoration: none;
+    font-size: $font-size-base;
+    border-left: 4px solid transparent;
+    transition: $transition-fast;
+    font-weight: 500;
+
+    &:hover {
+      background-color: $sidebar-hover;
+      color: $text-white;
+      border-left-color: $primary-color;
+      padding-left: calc($spacing-xl - 1px);
+    }
+
+    i {
+      width: 20px;
+      text-align: center;
+      font-size: $font-size-lg;
+      flex-shrink: 0;
+    }
+
+    span {
+      flex: 1;
+    }
+  }
+
+  .nav-link.active {
+    background: linear-gradient(90deg, $primary-gradient-start 0%, rgba($primary-gradient-start, 0.1) 100%);
+    color: $text-white;
+    border-left-color: $primary-color;
+    font-weight: 600;
+    box-shadow: inset 3px 0 8px rgba($primary-color, 0.2);
+  }
+}
+
+.sidebar-footer {
+  padding: $spacing-md 0;
+  border-top: 1px solid $sidebar-border;
+}
+
+.logout-btn {
+  width: 100%;
+  color: $sidebar-text;
+  padding: $spacing-md $spacing-xl;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  background: none;
+  border: none;
+  text-decoration: none;
+  font-size: $font-size-base;
+  cursor: pointer;
+  transition: $transition-fast;
+  font-weight: 500;
+  justify-content: flex-start;
+
+  &:hover {
+    background-color: $sidebar-hover;
+    color: $text-white;
+    border-left: 4px solid $primary-color;
+    padding-left: calc($spacing-xl - 1px);
+  }
+
+  i {
+    width: 20px;
+    text-align: center;
+    font-size: $font-size-lg;
+    flex-shrink: 0;
+  }
+
+  span {
+    flex: 1;
+    text-align: left;
+  }
+}

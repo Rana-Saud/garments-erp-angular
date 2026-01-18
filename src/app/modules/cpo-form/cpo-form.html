@@ -1,0 +1,334 @@
+<div class="container-fluid mt-4 mb-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-dark text-white">
+      <h5 class="mb-0"><i class="fas fa-file-invoice"></i> {{ isEditMode ? 'Edit CPO' : 'Create Purchase Order' }}</h5>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="cpoForm">
+        <!-- CPO Header Section -->
+        <div class="section-header mb-3">
+          <h6 class="bg-light p-2 border-start border-4 border-primary"><i class="fas fa-info-circle"></i> CPO Header
+            Details</h6>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <label class="form-label">CPO No <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" formControlName="cpoNo" placeholder="e.g., CPO001" readonly>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">CPO Date <span class="text-danger">*</span></label>
+            <input type="date" class="form-control" formControlName="cpoDate">
+            @if (cpoForm.get('cpoDate')?.touched && cpoForm.get('cpoDate')?.invalid) {
+            <small class="text-danger">CPO Date is required</small>
+            }
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Merchandiser <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" formControlName="merchandiser"
+              placeholder="Enter merchandiser name">
+            @if (cpoForm.get('merchandiser')?.touched && cpoForm.get('merchandiser')?.invalid) {
+            <small class="text-danger">Merchandiser is required</small>
+            }
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Customer <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" formControlName="customer" placeholder="Enter customer name">
+            @if (cpoForm.get('customer')?.touched && cpoForm.get('customer')?.invalid) {
+            <small class="text-danger">Customer is required</small>
+            }
+          </div>
+        </div>
+
+        <!-- ORDER & Commercial Detail Section -->
+        <div class="section-header mb-3 mt-4">
+          <h6 class="bg-light p-2 border-start border-4 border-primary"><i class="fas fa-info-circle"></i> Order &
+            Commercial Details</h6>
+        </div>
+
+        <div class="row mb-3 g-3">
+          <div class="col-md-3">
+            <label>Order Type</label>
+            <input class="form-control" formControlName="orderType">
+          </div>
+
+          <div class="col-md-3">
+            <label>Sub Order Type</label>
+            <input class="form-control" formControlName="subOrderType">
+          </div>
+
+          <div class="col-md-3">
+            <label>Season</label>
+            <input class="form-control" formControlName="season">
+          </div>
+
+          <div class="col-md-3">
+            <label>Selection</label>
+            <input class="form-control" formControlName="selection">
+          </div>
+
+          <div class="col-md-3">
+            <label>Customer PO #</label>
+            <input class="form-control" formControlName="customerPoNo">
+          </div>
+
+          <div class="col-md-3">
+            <label>Customer PO Date</label>
+            <input type="date" class="form-control" formControlName="customerPoDate">
+          </div>
+
+          <div class="col-md-3">
+            <label>Currency</label>
+            <input class="form-control" formControlName="currency">
+          </div>
+
+          <div class="col-md-3">
+            <label>Payment Term</label>
+            <input class="form-control" formControlName="paymentTerm">
+          </div>
+
+          <div class="col-md-4">
+            <label>Incoterm</label>
+            <input class="form-control" formControlName="incoterm">
+          </div>
+
+          <div class="col-md-4">
+            <label>Mode of Shipment</label>
+            <input class="form-control" formControlName="shipmentMode">
+          </div>
+
+          <div class="col-md-4">
+            <label>Delivery Term</label>
+            <input class="form-control" formControlName="deliveryTerm">
+          </div>
+
+          <div class="col-md-6">
+            <label>Shipping Instruction</label>
+            <input class="form-control" formControlName="shippingInstruction">
+          </div>
+
+          <div class="col-md-6">
+            <label>Destination (Port of Discharge)</label>
+            <input class="form-control" formControlName="destination">
+          </div>
+        </div>
+
+        <!-- Style & Product Details Section -->
+        <div class="section-header mb-3 mt-4">
+          <h6 class="bg-light p-2 border-start border-4 border-success"><i class="fas fa-shirt"></i> Style & Product
+            Details</h6>
+        </div>
+
+        <div class="row mb-3 g-2">
+          <div class="col-md-4">
+            <label>Customer Model / Style No</label>
+            <input class="form-control" formControlName="customerStyleNo">
+          </div>
+
+          <div class="col-md-4">
+            <label>IDL Model / Style No</label>
+            <input class="form-control" formControlName="idlStyleNo">
+          </div>
+
+          <div class="col-md-4">
+            <label>Customer Style Name</label>
+            <input class="form-control" formControlName="styleName">
+          </div>
+
+          <div class="col-md-4">
+            <label>Product Category</label>
+            <input class="form-control" formControlName="productCategory">
+          </div>
+
+          <div class="col-md-4">
+            <label>Product</label>
+            <input class="form-control" formControlName="product">
+          </div>
+
+          <div class="col-md-4">
+            <label>Main Leather</label>
+            <input class="form-control" formControlName="mainLeather">
+          </div>
+
+          <div class="col-md-3">
+            <label>Color</label>
+            <input class="form-control" formControlName="color">
+          </div>
+
+          <div class="col-md-3">
+            <label>Customer Color</label>
+            <input class="form-control" formControlName="customerColor">
+          </div>
+
+          <div class="col-md-3">
+            <label>Gauge</label>
+            <input class="form-control" formControlName="gauge">
+          </div>
+
+          <div class="col-md-3">
+            <label>Finish</label>
+            <input class="form-control" formControlName="finish">
+          </div>
+        </div>
+
+        <!-- Order Details Section -->
+        <div class="section-header mb-3 mt-4">
+          <h6 class="bg-light p-2 border-start border-4 border-warning"><i class="fas fa-boxes"></i> Order Details</h6>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <label class="form-label">Quantity <span class="text-danger">*</span></label>
+            <input type="number" class="form-control" formControlName="quantity" placeholder="0" min="1">
+            @if (cpoForm.get('quantity')?.touched && cpoForm.get('quantity')?.invalid) {
+            <small class="text-danger">Valid quantity required</small>
+            }
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Unit Price <span class="text-danger">*</span></label>
+            <input type="number" step="0.01" class="form-control" formControlName="unitPrice" placeholder="0.00"
+              min="0">
+            @if (cpoForm.get('unitPrice')?.touched && cpoForm.get('unitPrice')?.invalid) {
+            <small class="text-danger">Valid price required</small>
+            }
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Total Amount</label>
+            <input type="text" class="form-control" [value]="getTotalAmount() | currency" disabled>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Discount %</label>
+            <input type="number" step="0.01" class="form-control" formControlName="discount" placeholder="0" min="0"
+              max="100">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <label class="form-label">Delivery Date <span class="text-danger">*</span></label>
+            <input type="date" class="form-control" formControlName="deliveryDate">
+            @if (cpoForm.get('deliveryDate')?.touched && cpoForm.get('deliveryDate')?.invalid) {
+            <small class="text-danger">Delivery Date is required</small>
+            }
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Payment Terms</label>
+            <select class="form-control" formControlName="paymentTerms">
+              <option value="">Select Terms</option>
+              <option value="Net 30">Net 30</option>
+              <option value="Net 60">Net 60</option>
+              <option value="Advance">Advance Payment</option>
+              <option value="COD">Cash on Delivery</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Status</label>
+            <select class="form-control" formControlName="status">
+              <option value="Draft">Draft</option>
+              <option value="Active">Active</option>
+              <option value="Completed">Completed</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Remarks</label>
+            <input type="text" class="form-control" formControlName="remarks" placeholder="Additional notes">
+          </div>
+        </div>
+
+        <div class="section-header mb-3 mt-4">
+          <h6 class="bg-light p-2 border-start border-4 border-primary"><i class="fas fa-info-circle"></i> Size Breakup
+          </h6>
+        </div>
+
+        <table class="table table-hover table-fixed" formArrayName="sizes">
+          <thead class="table-dark sticky-header">
+            <tr>
+              <th>Size</th>
+              <th>Order Qty</th>
+              <th>Extra Qty</th>
+              <th>Final Qty</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let row of sizes.controls; let i=index" [formGroupName]="i">
+              <td>
+                <input class="form-control" formControlName="size" readonly>
+              </td>
+
+              <td>
+                <input type="number" class="form-control" formControlName="orderQty">
+              </td>
+
+              <td>
+                <input type="number" class="form-control" formControlName="extraQty">
+              </td>
+
+              <td>
+                <input type="number" class="form-control bg-light" formControlName="finalQty" readonly>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button class="btn btn-sm btn-outline-primary" type="button" (click)="applyExtraQtyPercent()">
+          Apply Extra Qty %
+        </button>
+
+        <div class="section-header mb-3 mt-4">
+          <h6 class="bg-light p-2 border-start border-4 border-primary"><i class="fas fa-info-circle"></i> Production
+            Instruction</h6>
+        </div>
+        <table class="table table-hover table-fixed" formArrayName="productionInstructions">
+          <thead class="table-dark sticky-header">
+            <tr>
+              <th width="25%">Process</th>
+              <th>Instruction</th>
+              <th width="80">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let p of productionInstructions.controls; let i=index" [formGroupName]="i">
+
+              <td>
+                <input class="form-control" formControlName="process">
+              </td>
+
+              <td>
+                <input class="form-control" formControlName="instruction">
+              </td>
+
+              <td class="text-center">
+                <button class="btn btn-sm btn-danger" type="button" (click)="removeProductionRow(i)">
+                  <i class="fas fa-remove"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button" class="btn btn-success" (click)="addProductionRow()">
+          <i class="fas fa-plus"></i> Add Row
+        </button>
+        <!-- Buttons -->
+        <div class="row mt-4">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-outline-secondary me-2" (click)="goBackToList()" title="Back to List">
+              <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button type="submit" class="btn btn-primary me-2" (click)="onSubmit()">
+              <i class="fas fa-save"></i> Save
+            </button>
+            <button type="button" class="btn btn-secondary me-2" (click)="onReset()">
+              <i class="fas fa-redo"></i> Reset
+            </button>
+            <button type="button" class="btn btn-outline-danger" (click)="onCancel()">
+              <i class="fas fa-times-circle"></i> Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
