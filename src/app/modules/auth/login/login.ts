@@ -31,7 +31,7 @@ export class Login {
       this.loginForm.value.username!,
       this.loginForm.value.password!
     )) {
-      this.router.navigate(['/cpo']);
+      this.router.navigate(['/dashboard']);
     }
   }
 

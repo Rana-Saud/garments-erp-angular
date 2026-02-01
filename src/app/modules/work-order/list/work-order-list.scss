@@ -1,0 +1,3 @@
+@import '../../../../theme.scss';
+.card-header { @include card-header-gradient; }
+.table { font-size: 0.95rem; }

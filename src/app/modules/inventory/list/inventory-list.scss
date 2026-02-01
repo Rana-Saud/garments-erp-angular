@@ -1,0 +1,4 @@
+@import '../../../../theme.scss';
+.card-header { @include card-header-gradient; }
+.card-body { @include card-body-typography; }
+.table { font-size: 0.9rem; }

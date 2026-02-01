@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between align-items-center"><h5 class="mb-0"><i class="fas fa-boxes"></i> Packing / Dispatch</h5><div><a routerLink="/packing/add" class="btn btn-sm btn-primary">New Shipment</a></div></div>
+  <div class="card-body">
+    <table class="table table-sm">
+      <thead class="table-dark"><tr><th>#</th><th>Shipment</th><th>WO</th><th>Qty</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr *ngFor="let p of list; index as i"><td>{{ i + 1 }}</td><td>{{ p.shipment }}</td><td>{{ p.woNo }}</td><td>{{ p.qty }}</td><td>{{ p.status }}</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>

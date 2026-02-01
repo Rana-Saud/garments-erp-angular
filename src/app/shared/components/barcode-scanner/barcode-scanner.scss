@@ -1,0 +1,24 @@
+@import "../../../../theme.scss";
+
+.barcode-scanner {
+  .card { @include card-style; margin-bottom: $spacing-lg; }
+
+  .card-header { @include card-header-gradient($spacing-sm, $spacing-md); }
+
+  @include card-body-typography(0.95rem);
+
+  .reader {
+    width:100%;
+    max-width:480px;
+    min-height:200px;
+    border:1px solid #e9ecef;
+    display:block;
+    margin:0.5rem 0;
+    padding:0.25rem;
+    border-radius:4px;
+    background:#fafafa;
+  }
+
+  .keyboard { margin-top:0.6rem; }
+}
+

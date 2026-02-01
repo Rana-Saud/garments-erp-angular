@@ -1,0 +1,139 @@
+@import '../../../../theme.scss';
+
+.card { .card-header { @include card-header-gradient; } .card-body { @include card-body-typography; } }
+
+
+.container-fluid {
+  background-color: transparent;
+  padding: 0;
+  min-height: 100%;
+}
+
+// List Header Styling
+.list-header {
+  padding: $spacing-xl;
+  background: linear-gradient(135deg, $primary-gradient-start 0%, $primary-gradient-end 100%);
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-md;
+  margin-bottom: $spacing-xl !important;
+
+  .header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: $spacing-2xl;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: stretch;
+      gap: $spacing-lg;
+    }
+  }
+
+  .header-title {
+    flex: 1;
+    min-width: 0;
+
+    h2 {
+      color: $text-white;
+      font-weight: 700;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: $spacing-md;
+      font-size: 1.75rem;
+      white-space: nowrap;
+
+      i {
+        font-size: 1.8rem;
+        opacity: 0.9;
+      }
+    }
+
+    .header-subtitle {
+      color: rgba($text-white, 0.85);
+      margin: $spacing-sm 0 0 0;
+      font-size: $font-size-base;
+      font-weight: 400;
+    }
+  }
+
+  .header-action {
+    display: flex;
+    gap: $spacing-md;
+    flex-shrink: 0;
+
+    .btn {
+      white-space: nowrap;
+      padding: $spacing-md $spacing-xl;
+      font-weight: 600;
+      font-size: $font-size-base;
+      border-radius: $border-radius-md;
+      background: rgba($text-white, 0.2);
+      border: 1px solid rgba($text-white, 0.3);
+      color: $text-white;
+      transition: $transition-default;
+
+      &:hover {
+        background: rgba($text-white, 0.3);
+        border-color: rgba($text-white, 0.5);
+        color: $text-white;
+        transform: translateY(-2px);
+      }
+
+      i {
+        margin-right: $spacing-sm;
+        font-size: $font-size-lg;
+      }
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+h2 {
+  color: $text-primary;
+  font-weight: 600;
+  margin-bottom: $spacing-xl;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+
+  i {
+    color: $primary-color;
+    font-size: $font-size-xl;
+  }
+}
+
+.btn-primary {
+  @include button-primary;
+}
+
+.card {
+  @include card-style;
+  margin-bottom: $spacing-xl;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .card-body {
+    padding: $spacing-2xl;
+  }
+}
+
+.table-card {
+  padding: 0;
+  overflow: visible;
+
+  .card-body {
+    padding: $spacing-2xl;
+    flex: 0 0 auto;
+  }
+}

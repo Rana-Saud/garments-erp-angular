@@ -12,8 +12,9 @@ export class AuthService {
 
   login(username: string, password: string): boolean {
     if (username && password) {
-      // In real app, call API
-      localStorage.setItem(this.TOKEN_KEY, 'Bearer_token_' + username);
+      // In real app, call API and store returned token
+      const fakeToken = 'Bearer_token_' + username;
+      localStorage.setItem(this.TOKEN_KEY, fakeToken);
       this.isAuthenticatedSubject.next(true);
       return true;
     }
@@ -25,8 +26,11 @@ export class AuthService {
   }
 
   private checkToken(): boolean {
-    return true;
     return !!localStorage.getItem(this.TOKEN_KEY);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(this.TOKEN_KEY);
   }
 
   logout(): void {

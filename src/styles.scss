@@ -64,6 +64,12 @@ app-root {
   @include card-style;
 }
 
+/* App-wide card typography for consistent, readable UI */
+.card {
+  .card-body { font-size: 0.95rem; }
+  .card-header { font-size: 1rem; font-weight: 600; }
+}
+
 .badge {
   @include badge-style($bg-secondary, $text-secondary, $status-secondary-border);
 

@@ -25,6 +25,7 @@ $text-secondary: #6c757d;
 $text-light: #b8bcc4;
 $text-white: #ffffff;
 $text-dark: #333333;
+$text-muted: #888888;
 
 // Border Colors
 $border-light: #e9ecef;
@@ -178,6 +179,43 @@ $bp-xl: 1200px;
   border-radius: $border-radius-lg;
   background-color: $bg-secondary;
   box-shadow: $shadow-sm;
+}
+
+// Shared mixins for consistent components
+@mixin card-header-gradient($padding-vertical: $spacing-lg, $padding-horizontal: $spacing-xl) {
+  @include gradient-primary;
+  border: none;
+  border-radius: $border-radius-lg $border-radius-lg 0 0;
+  padding: $padding-vertical $padding-horizontal;
+
+  h5 {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: $text-white;
+    margin: 0;
+    font-size: $font-size-lg;
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+
+    i {
+      font-size: $font-size-xl;
+    }
+  }
+}
+
+@mixin table-head-styles {
+  color: $text-white;
+  font-weight: 600;
+  border: none;
+  padding: $spacing-lg $spacing-md;
+  text-transform: uppercase;
+  font-size: $font-size-sm;
+  letter-spacing: 0.5px;
+}
+
+@mixin card-body-typography($size: $font-size-base) {
+  .card-body { font-size: $size; padding: $spacing-md; }
 }
 
 @mixin badge-style($bg-color, $text-color, $border-color) {

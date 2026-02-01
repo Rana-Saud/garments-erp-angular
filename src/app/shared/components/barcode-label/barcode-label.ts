@@ -18,7 +18,7 @@ export interface BarcodeLabel {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './barcode-label.html',
-  styleUrl: './barcode-label.scss',
+  styleUrls: ['./barcode-label.scss'],
 })
 export class BarcodeLabelComponent implements AfterViewInit {
   @Input() labelData: BarcodeLabel | null = null;

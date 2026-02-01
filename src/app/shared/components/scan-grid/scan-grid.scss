@@ -1,0 +1,27 @@
+@import "../../../../theme.scss";
+
+.scan-grid {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.scan-grid table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+.scan-grid thead.table-dark th {
+  @include table-head-styles;
+}
+
+.scan-grid tbody tr:hover { background: $bg-lighter; }
+
+.scan-grid td { vertical-align: middle; }
+
+.scan-grid .small { font-size: 0.85rem; color: #666; }
+
+.actions {
+  display:flex;
+  gap:0.5rem;
+  margin-top: 0.5rem;
+}

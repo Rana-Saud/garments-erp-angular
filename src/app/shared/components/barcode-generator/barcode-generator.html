@@ -1,0 +1,71 @@
+<div class="card barcode-generator">
+  <div class="card-header">
+    <h5><i class="fa fa-barcode"></i> Barcode Label</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <form (ngSubmit)="render()" class="barcode-form">
+          <div class="mb-2">
+            <label class="form-label">Customer / PO#</label>
+            <input class="form-control form-control-sm" [(ngModel)]="fields.customerPo" name="customerPo" />
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Cust.Reference</label>
+            <input class="form-control form-control-sm" [(ngModel)]="fields.custReference" name="custReference" />
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label"><b>Style/Model No.</b></label>
+            <input class="form-control form-control-sm" [(ngModel)]="fields.styleModel" name="styleModel" />
+          </div>
+
+          <div class="mb-2 row g-2">
+            <div class="col">
+              <label class="form-label">Leather</label>
+              <input class="form-control form-control-sm" [(ngModel)]="fields.leather" name="leather" />
+            </div>
+            <div class="col">
+              <label class="form-label"><b>Color</b></label>
+              <input class="form-control form-control-sm" [(ngModel)]="fields.color" name="color" />
+            </div>
+            <div class="col-auto">
+              <label class="form-label"><b>Size</b></label>
+              <input class="form-control form-control-sm" style="width:70px" [(ngModel)]="fields.size" name="size" />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Barcode Value (optional)</label>
+            <input class="form-control form-control-sm" [(ngModel)]="fields.barcode" name="barcode" placeholder="Leave empty to use Style/Model or auto-gen" />
+          </div>
+
+          <div class="d-flex gap-2">
+            <button class="btn btn-primary btn-sm" type="submit">Generate</button>
+            <button class="btn btn-outline-secondary btn-sm" type="button" (click)="download()">Download PNG</button>
+            <button class="btn btn-link btn-sm text-muted" type="button" (click)="fields = { customerPo: '', custReference: '', styleModel: '', leather: '', color: '', size: '', barcode: '' }">Clear</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-md-6 d-flex justify-content-center align-items-start">
+        <div class="label-preview" #labelPreview>
+          <div class="label-top"></div>
+          <div class="label-body">
+            <div class="small text-muted top-left">{{ fields.customerPo || 'Customer / PO#' }}</div>
+            <div class="small text-muted">{{ fields.custReference || 'Cust.Reference' }}</div>
+            <div class="h6 mt-2 mb-1 fw-bold">{{ fields.styleModel || 'Style/Model No.' }}</div>
+            <div class="small">{{ fields.leather || 'Leather' }}</div>
+            <div class="fw-bold mt-1">{{ fields.color || 'Color' }}</div>
+            <div class="fw-bold">{{ fields.size || 'Size' }}</div>
+          </div>
+          <div class="label-barcode">
+            <svg #barcode></svg>
+            <div class="barcode-text">{{ barcodeValue }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

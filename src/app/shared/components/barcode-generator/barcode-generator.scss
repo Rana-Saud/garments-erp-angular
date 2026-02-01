@@ -1,0 +1,28 @@
+@import "../../../../theme.scss";
+
+.barcode-generator {
+  .card { @include card-style; margin-bottom: $spacing-lg; }
+
+  .card-header { @include card-header-gradient($spacing-sm, $spacing-md); }
+
+  @include card-body-typography(0.95rem);
+
+  .barcode-form { max-width:100%; }
+
+  .label-preview {
+    width:320px;
+    border:1px solid #ddd;
+    background: #fff;
+    padding:0.6rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+
+  .label-top { border-bottom: 1px dashed #333; height:8px; margin-bottom:8px; }
+  .label-body { font-size:13px; color:#222; }
+  .label-barcode { text-align:center; margin-top:8px; }
+  .label-barcode svg { width: 100%; height: 60px; }
+  .barcode-text { margin-top:4px; font-size:13px; letter-spacing:2px; }
+
+  .d-flex.gap-2 { gap: 0.5rem; }
+}
+

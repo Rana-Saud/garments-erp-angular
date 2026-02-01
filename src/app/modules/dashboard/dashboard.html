@@ -1,0 +1,59 @@
+<div class="dashboard">
+  <div class="top-cards row g-3">
+    <div class="col-md-3">
+      <div class="card stat border-0 shadow-sm card-1 py-2">
+        <div class="card-body">
+          <h6 class="text-white mb-2 fs-4 fw-bold">Total Orders</h6>
+          <h2 class="value text-warning fw-bold">{{ ds.getSummarySync().totalOrders }}</h2>
+          <small class="text-white fs-6">Active & recent</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card stat border-0 shadow-sm card-2 py-2">
+        <div class="card-body">
+          <h6 class="text-white mb-2 fs-4 fw-bold">Open Work Orders</h6>
+          <h2 class="value text-warning fw-bold">{{ ds.getSummarySync().workOrdersOpen }}</h2>
+          <small class="text-white fs-6">Needs attention</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card stat border-0 shadow-sm card-3 py-2">
+        <div class="card-body">
+          <h6 class="text-white mb-2 fs-4 fw-bold">Inventory Low</h6>
+          <h2 class="value text-warning fw-bold">{{ ds.getSummarySync().inventoryLow }}</h2>
+          <small class="text-white fs-6">Reorder soon</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card stat border-0 shadow-sm card-4 py-2">
+        <div class="card-body">
+          <h6 class="text-white mb-2 fs-4 fw-bold">QC Failures (7d)</h6>
+          <h2 class="value text-warning fw-bold">{{ ds.getSummarySync().qcFails }}</h2>
+          <small class="text-white fs-6">Quality trend</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="charts row mt-4">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header text-white"><h6>Production This Week</h6></div>
+        <div class="card-body"><div #barChart id="dashboard-bar" style="height:360px; width:100%"></div></div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header text-white"><h6>Inventory Distribution</h6></div>
+        <div class="card-body"><div #pieChart id="dashboard-pie" style="height:360px; width:100%"></div></div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,30 @@
+<div class="card barcode-scanner">
+  <div class="card-header">
+    <h5><i class="fa fa-camera"></i> Barcode Scanner</h5>
+  </div>
+  <div class="card-body">
+    <div class="d-flex align-items-center mb-2 gap-2">
+      <select class="form-select w-auto form-select-sm" [(ngModel)]="selectedCameraId">
+        <option *ngFor="let cam of availableCameras" [value]="cam.id">{{ cam.label || cam.id }}</option>
+      </select>
+
+      <button class="btn btn-primary btn-sm" (click)="start(selectedCameraId)" [disabled]="scanning">Start</button>
+      <button class="btn btn-secondary btn-sm" (click)="stop()" [disabled]="!scanning">Stop</button>
+
+      <small class="text-muted ms-2" *ngIf="availableCameras.length===0">No cameras detected or permission required</small>
+    </div>
+
+    <div id="qr-reader" class="reader"> </div>
+
+    <div class="keyboard mt-3">
+      <label class="form-label">Keyboard scanner / Manual entry</label>
+      <div class="input-group">
+        <input class="form-control form-control-sm" [(ngModel)]="keyboardValue" (keyup.enter)="onKeyboardEnter()" placeholder="Scan from keyboard or type and press Enter" />
+        <button class="btn btn-outline-secondary btn-sm" (click)="onKeyboardEnter()">Add</button>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <scan-grid [scans]="scans"></scan-grid>
+  </div>
+</div>

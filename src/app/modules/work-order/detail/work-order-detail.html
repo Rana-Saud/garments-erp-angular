@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-header"><h5 class="mb-0">Work Order - Details</h5></div>
+  <div class="card-body">
+    <div *ngIf="wo; else noData">
+      <h4>{{ wo.woNo }} <small class="text-muted">({{ wo.style }})</small></h4>
+      <p>Quantity: {{ wo.qty }}</p>
+      <p>Progress: {{ wo.progress }}%</p>
+      <button class="btn btn-sm btn-secondary" (click)="back()">Back</button>
+    </div>
+    <ng-template #noData>
+      <p>No work order found.</p>
+      <button class="btn btn-sm btn-secondary" (click)="back()">Back</button>
+    </ng-template>
+  </div>
+</div>

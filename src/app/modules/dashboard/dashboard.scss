@@ -1,0 +1,40 @@
+@import '../../../theme.scss';
+
+.card-header { @include card-header-gradient; }
+.card-body { @include card-body-typography; }
+
+.dashboard .top-cards .stat { margin-bottom: 12px; }
+.dashboard .stat .value { font-weight: 700; font-size: 28px; }
+.dashboard .muted { color: $text-secondary; }
+.charts .card { margin-bottom: 12px; }
+.dashboard .top-cards .stat {
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+  
+  &.card-1 {
+    background: linear-gradient(135deg, #4a90e2 0%, #9013fe 100%);
+    color: $text-primary; // Adjust text color to match theme
+  }
+  
+  &.card-2 {
+    background: linear-gradient(135deg, #f39c12 0%, #e74c3c 100%);
+    color: $text-primary; // Adjust text color to match theme
+  }
+  
+  &.card-3 {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    color: $text-primary; // Adjust text color to match theme
+  }
+  
+  &.card-4 {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: $text-primary; // Adjust text color to match theme
+  }
+}
