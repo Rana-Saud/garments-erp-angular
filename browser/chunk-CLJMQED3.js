@@ -1,0 +1,1 @@
+import{Q as o,n as t}from"./chunk-5DGU7OID.js";var r=class e{get(){return t([{woNo:"WO-1001",style:"Leather Jacket A",inspected:80,failed:3},{woNo:"WO-1003",style:"Leather Jacket C",inspected:60,failed:2}])}static \u0275fac=function(i){return new(i||e)};static \u0275prov=o({token:e,factory:e.\u0275fac,providedIn:"root"})};export{r as a};
